@@ -7,5 +7,28 @@ public class RoadNetworkUniquePaths {
     * the roads. Given this information, write a function that returns the number of unique paths from the starting
     * intersection to the destination intersection.
     *
+    * Example 1:
+    * int n = 4;
+    * int[][] roads = {{0, 1}, {0, 2}, {1, 2}, {2, 3}};
+    * int start = 0;
+    * int end = 3;
+    * int expectedOutput = 2;
+    *
+    * Example 2:
+    * int n = 5;
+    * int[][] roads = {{0, 1}, {0, 2}, {1, 2}, {2, 3}, {3, 4}};
+    * int start = 0;
+    * int end = 4;
+    * int expectedOutput = 1;
+    *
+    * Example 3:
+    * int n = 4;
+    * int[][] roads = {{0, 1}, {0, 2}, {1, 2}, {2, 3}};
+    * int start = 1;
+    * int end = 3;
+    * int expectedOutput = 1;
+    *
     * */
+
+
 }

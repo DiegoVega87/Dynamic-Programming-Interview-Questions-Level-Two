@@ -6,6 +6,16 @@ public class EfficientCashRegister {
     * smallest number of coins and bills possible to pay the price. Return -1 if the given coins are not suitable to pay
     * the exact price.
     *
+    * Example 1:
+    *
+    * int[] coins = {1, 5, 10, 25};
+    * int price = 76;
+    * int expectedOutput = 4;
+    *
+    * Example 2:
+    * int[] coins = {1, 5, 10, 25};
+    * int price = 99;
+    * int expectedOutput = 9;
     *
     * */
 }

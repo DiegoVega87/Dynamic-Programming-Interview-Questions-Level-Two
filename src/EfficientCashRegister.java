@@ -1,4 +1,6 @@
 import javax.naming.PartialResultException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EfficientCashRegister {
 
@@ -29,11 +31,16 @@ public class EfficientCashRegister {
     public static int calculateMinCoins(int[] coins, int price){
 
         int n = coins.length;
+        int[][] memo = new int[n][price + 1];
 
-        return calculateMinCoins(coins, n-1, price);
+        for(int[] row : memo){
+            Arrays.fill(row, -1);
+        }
+
+        return calculateMinCoins(coins, n-1, price, memo);
     }
 
-    private static int calculateMinCoins(int[] coins, int index, int target){
+    private static int calculateMinCoins(int[] coins, int index, int target, int[][] memo){
 
 
         if(index == 0){
@@ -44,13 +51,17 @@ public class EfficientCashRegister {
             }
         }
 
-        int notTake = calculateMinCoins(coins, index - 1, target);
+        if(memo[index][target] != -1){
+            return memo[index][target];
+        }
+
+        int notTake = calculateMinCoins(coins, index - 1, target, memo);
         int take = Integer.MAX_VALUE;
 
         if(coins[index] <= target){
-            take =  1 + calculateMinCoins(coins, index, target - coins[index]);
+            take =  1 + calculateMinCoins(coins, index, target - coins[index], memo);
         }
 
-        return Math.min(take, notTake);
+        return memo[index][target] = Math.min(notTake, take);
     }
 }

@@ -30,38 +30,22 @@ public class EfficientCashRegister {
     }
     public static int calculateMinCoins(int[] coins, int price){
 
-        int n = coins.length;
-        int[][] memo = new int[n][price + 1];
+        Arrays.sort(coins); // Sort the coins array in ascending order
+        int[] dp = new int[price + 1]; // Create an array to store the minimum number of coins for each price
+        Arrays.fill(dp, Integer.MAX_VALUE); //Initialize the array with max value
 
-        for(int[] row : memo){
-            Arrays.fill(row, -1);
-        }
+        dp[0] = 0; // The minimum number of coins for 0 price;
 
-        return calculateMinCoins(coins, n-1, price, memo);
-    }
-
-    private static int calculateMinCoins(int[] coins, int index, int target, int[][] memo){
-
-
-        if(index == 0){
-            if(target % coins[0] == 0){
-                return target/coins[0];
-            }else{
-                return -1;
+        for(int i=1; i <= price; i++){
+            for(int j = 0; j < coins.length; j++){
+                if(coins[j] <= i && dp[i - coins[j]] != Integer.MAX_VALUE){
+                    dp[i] = Math.min(dp[i], dp[i-coins[j]] + 1);
+                }
             }
         }
 
-        if(memo[index][target] != -1){
-            return memo[index][target];
-        }
-
-        int notTake = calculateMinCoins(coins, index - 1, target, memo);
-        int take = Integer.MAX_VALUE;
-
-        if(coins[index] <= target){
-            take =  1 + calculateMinCoins(coins, index, target - coins[index], memo);
-        }
-
-        return memo[index][target] = Math.min(notTake, take);
+        return dp[price] == Integer.MAX_VALUE ? -1: dp[price];
     }
+
+
 }

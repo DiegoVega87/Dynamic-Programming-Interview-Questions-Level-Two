@@ -27,6 +27,35 @@ public class EfficientCashRegister {
         int[] coins = {1, 5, 10, 25};
         int price = 76;
         System.out.println(calculateMinCoins(coins,price));
+
+        coins = new int[]{1, 5, 10, 25};
+        price = 99;
+        System.out.println(calculateMinCoins(coins,price));
+
+        coins = new int[]{1, 2, 5, 10, 20, 50, 100, 200};
+        price = 1234;
+        System.out.println(calculateMinCoins(coins,price));
+
+        coins = new int[]{1, 2, 5, 10, 20, 50, 100, 200};
+        price = 123;
+        System.out.println(calculateMinCoins(coins,price));
+
+        coins = new int[]{1, 2, 5, 10, 20, 50, 100, 200};
+        price = 1;
+        System.out.println(calculateMinCoins(coins,price));
+
+        coins = new int[]{1, 2, 5, 10, 20, 50, 100, 200};
+        price = 0;
+        System.out.println(calculateMinCoins(coins,price));
+
+        coins = new int[]{1, 2, 5, 10, 20, 50, 100, 200};
+        price = 201;
+        System.out.println(calculateMinCoins(coins,price));
+
+        coins = new int[]{1, 2, 5, 10, 20, 50, 100, 200};
+        price = 199;
+        System.out.println(calculateMinCoins(coins,price));
+
     }
     public static int calculateMinCoins(int[] coins, int price){
 

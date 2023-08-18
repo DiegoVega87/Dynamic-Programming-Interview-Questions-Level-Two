@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SalesPerformance {
 
     /*
@@ -27,22 +29,27 @@ public class SalesPerformance {
         int n = salesData.length;
         int ind = 0;
         int prev = -1;
-
-        return helper(salesData,  ind,  prev,  n);
+        int[][] dp = new int[n][n+1];
+        for(int[] arr : dp){
+            Arrays.fill(arr, -1);
         }
+        return helper(salesData,  ind,  prev,  n, dp);
+    }
 
-    private static int helper(int[] sales, int ind, int prev, int n){
+    private static int helper(int[] sales, int ind, int prev, int n, int [][] dp){
         if(ind == n){
             return 0;
         }
-
-        int length = helper(sales, ind+1, prev, n);
+        if(dp[ind][prev+1] != -1){
+            return dp[ind][prev+1];
+        }
+        int length = helper(sales, ind+1, prev, n,dp);
 
         if(prev == -1 || sales[ind] > sales[prev]){
-            length = Math.max(length, 1+helper(sales, ind+1, ind, n));
+            length = Math.max(length, 1+helper(sales, ind+1, ind, n, dp));
         }
 
-        return length;
+        return dp[ind][prev+1] = length;
     }
 
 

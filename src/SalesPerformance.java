@@ -27,13 +27,19 @@ public class SalesPerformance {
     public static int longestIncreasingSubsequence(int[] salesData){
 
         int n = salesData.length;
-        int ind = 0;
-        int prev = -1;
-        int[][] dp = new int[n][n+1];
-        for(int[] arr : dp){
-            Arrays.fill(arr, -1);
+        int[][] dp = new int[n+1][n+1];
+
+        for(int ind=n-1; ind >= 0; ind--){
+            for(int prev = ind-1; prev >= -1; prev--){
+                int notTake = dp[ind+1][prev + 1];
+                int take = 0;
+                if(prev == -1 || salesData[ind] > salesData[prev]){
+                    take = 1 + dp[ind+1][ind+1];
+                }
+                dp[ind][prev+1] = Math.max(notTake,take);
+            }
         }
-        return helper(salesData,  ind,  prev,  n, dp);
+        return dp[0][0];
     }
 
     private static int helper(int[] sales, int ind, int prev, int n, int [][] dp){
@@ -51,8 +57,5 @@ public class SalesPerformance {
 
         return dp[ind][prev+1] = length;
     }
-
-
-
 
 }

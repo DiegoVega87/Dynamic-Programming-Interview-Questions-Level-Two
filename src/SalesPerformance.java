@@ -15,5 +15,37 @@ public class SalesPerformance {
     * int[] salesData = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
     * int result = longestIncreasingSubsequence(salesData);
     * System.out.println(result); // Output: 1
+    *
     * */
+
+    public static void main(String[] args){
+        int[] data = {1,3,2,4,6,5,8,7,9};
+        System.out.println(longestIncreasingSubsequence(data));
+    }
+    public static int longestIncreasingSubsequence(int[] salesData){
+
+        int n = salesData.length;
+        int ind = 0;
+        int prev = -1;
+
+        return helper(salesData,  ind,  prev,  n);
+        }
+
+    private static int helper(int[] sales, int ind, int prev, int n){
+        if(ind == n){
+            return 0;
+        }
+
+        int length = helper(sales, ind+1, prev, n);
+
+        if(prev == -1 || sales[ind] > sales[prev]){
+            length = Math.max(length, 1+helper(sales, ind+1, ind, n));
+        }
+
+        return length;
+    }
+
+
+
+
 }
